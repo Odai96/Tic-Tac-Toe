@@ -33,7 +33,7 @@ function clickedCell(e)
         let x=document.getElementById(e.target.id);
         x.style.color='red';
         x.innerHTML += "X";
-        if(numOfMoves>=5){checkWinner("X");}
+        if(numOfMoves>=5){setTimeout(checkWinner,500,"X");}
     }
     if (turn==0)
     {
@@ -41,7 +41,7 @@ function clickedCell(e)
         let o=document.getElementById(e.target.id)
         o.style.color='blue';
         o.innerHTML += "O";
-        if(numOfMoves>=5){checkWinner("O");}
+        if(numOfMoves>=5){setTimeout(checkWinner,500,"O");}
     }
     turn^=1;
     console.log(clicked);
