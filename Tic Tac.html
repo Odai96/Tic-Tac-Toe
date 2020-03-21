@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+var turn=1;
+var clicked=["!","@","$","%","^","#","&","*","~"];
+var numOfMoves=0;
+var gameEnded=0;
+$(document).ready(function(){
+    const cells = document.querySelectorAll('td');
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('click', function(e){clickedCell(e);}); 
+    }
+});
+function clickedCell(e)
+{
+    if(gameEnded==1)
+    {
+        alert("the Game ended click restart the game to play!");
+        return;
+    }
+    if(clicked[e.target.id]=="0"||clicked[e.target.id]=="1")
+    {
+        alert("This cell is clicked choose another cell!");
+        return;
+    }
+    numOfMoves++;
+    if (turn==1)
+    {
+        clicked[e.target.id]=1;
+        let x=document.getElementById(e.target.id);
+        x.style.color='red';
+        x.innerHTML += "X";
+        if(numOfMoves>=5){checkWinner("X");}
+    }
+    if (turn==0)
+    {
+        clicked[e.target.id]=0;
+        let o=document.getElementById(e.target.id)
+        o.style.color='blue';
+        o.innerHTML += "O";
+        if(numOfMoves>=5){checkWinner("O");}
+    }
+    turn^=1;
+    console.log(clicked);
+}
+function checkWinner(turnOf)
+{
+    if(clicked[0]==clicked[1]&&clicked[0]==clicked[2])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[0]==clicked[3]&&clicked[0]==clicked[6])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[0]==clicked[4]&&clicked[0]==clicked[8])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[1]==clicked[4]&&clicked[1]==clicked[7])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[2]==clicked[5]&&clicked[2]==clicked[8])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[3]==clicked[4]&&clicked[3]==clicked[5])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[2]==clicked[4]&&clicked[2]==clicked[6])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(clicked[6]==clicked[7]&&clicked[6]==clicked[8])
+    {
+        gameEnded=1;
+        alert(turnOf + " Win The Game!");
+    }
+    else if(numOfMoves==9)
+    {
+        gameEnded=1;
+        alert("Game Ended Draw!");
+    }
+}
+function restartGame()
+{
+    turn=1;
+    clicked=["!","@","$","%","^","#","&","*","~"];
+    numOfMoves=0;
+    gameEnded=0;
+    for (var i = 0; i <9; i++)
+    {
+        document.getElementById(i).innerHTML="";
+    }
+}
+</script>
+<style>
+table, th, td {
+  width:20%;
+  height:50px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+<center>
+    <h1>Tic Tac Teo</h1>
+<table>
+  <tr>
+    <td id=0></td>
+    <td id=1></td>
+    <td id=2></td>
+  </tr>
+  <tr>
+    <td id=3></td>
+    <td id=4></td>
+    <td id=5></td>
+  </tr>
+  <tr>
+    <td id=6></td>
+    <td id=7></td>
+    <td id=8></td>
+  </tr>
+</table>
+<br><br>
+<button type="button" onclick="restartGame()">Restart The Game</button>
+</center>
+</body>
+</html>
