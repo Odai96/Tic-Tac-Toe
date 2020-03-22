@@ -3,7 +3,7 @@ var clicked=["!","@","$","%","^","#","&","*","~"];
 var numOfMoves=0;
 var gameEnded=0;
 jQuery(document).ready(function(){
-    gameStart();
+    setTimeout(gameStart,100);
 });
 function gameStart()
 {
