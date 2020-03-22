@@ -120,5 +120,5 @@ function restartGame()
     {
         document.getElementById(i).innerHTML="";
     }
-    gameStart();
+    setTimeout(gameStart,100);
 }
